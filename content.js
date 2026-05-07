@@ -28,13 +28,15 @@ export default {
   home_about_cta: 'View Membership Plans',
   home_about_image: '/images/photo-11.jpg',
 
-  // Gallery strip
+  // Gallery
+  home_gallery_heading: 'Our Facility',
   home_gallery: [
     { image: '/images/photo-04.jpg' },
     { image: '/images/photo-05.jpg' },
     { image: '/images/photo-06.jpg' },
     { image: '/images/photo-07.jpg' },
     { image: '/images/photo-08.jpg' },
+    { image: '/images/photo-10.jpg' },
   ],
 
   // Stats

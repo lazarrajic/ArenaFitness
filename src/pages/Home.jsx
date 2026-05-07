@@ -1,24 +1,10 @@
 import { useState } from 'react'
-import {
-  Activity,
-  Zap,
-  Bike,
-  Shield,
-  Dumbbell,
-  Heart,
-  MapPin,
-  Phone,
-  Mail,
-} from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react'
 import c from '../../content.js'
 import AnimatedSection from '../components/AnimatedSection'
 
 const GREEN = '#7AB204'
-const DOT_BG = { backgroundImage: `radial-gradient(circle, rgba(122,178,4,0.07) 1px, transparent 1px)`, backgroundSize: '28px 28px' }
-
-function Accent({ center = true }) {
-  return <div className={`h-1 w-14 rounded-full mt-3 mb-10 ${center ? 'mx-auto' : ''}`} style={{ backgroundColor: GREEN }} />
-}
+const NAVY = '#0D0D1A'
 
 function Hero() {
   return (
@@ -28,34 +14,56 @@ function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
       />
       <img src={c.home_hero_image} data-cms="Home - Hero - Image" alt="" style={{ display: 'none' }} />
-      {/* Dark overlay */}
-      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.52)' }} />
-      {/* Green left-wash */}
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(122,178,4,0.13) 0%, transparent 50%)' }} />
-      {/* Green bottom edge line */}
-      <div className="absolute bottom-0 left-0 right-0 h-1" style={{ backgroundColor: GREEN }} />
 
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+      {/* Directional gradient — solid navy left, fades to near-transparent right */}
+      <div className="absolute inset-0" style={{
+        background: 'linear-gradient(105deg, rgba(13,13,26,0.97) 0%, rgba(13,13,26,0.82) 42%, rgba(13,13,26,0.18) 100%)'
+      }} />
+
+      {/* Thin green baseline */}
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ backgroundColor: GREEN }} />
+
+      <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-16 lg:px-24">
+        {/* Eyebrow label */}
+        <div className="flex items-center gap-3 mb-7">
+          <div className="w-8 h-px" style={{ backgroundColor: GREEN }} />
+          <span className="font-body text-xs tracking-[0.25em] uppercase font-medium" style={{ color: GREEN }}>
+            Henderson, West Auckland
+          </span>
+        </div>
+
         <h1
           data-cms="Home - Hero - Heading"
-          className="font-heading uppercase text-white text-5xl md:text-7xl leading-none max-w-4xl mb-4"
+          className="font-heading uppercase text-white leading-none mb-6 max-w-2xl"
+          style={{ fontSize: 'clamp(2.6rem, 5.5vw, 5rem)' }}
         >
           {c.home_hero_heading}
         </h1>
+
         <p
           data-cms="Home - Hero - Sub"
-          className="text-white/80 text-lg md:text-xl max-w-xl mb-10 font-body"
+          className="text-white/65 font-body text-base md:text-lg mb-10 max-w-sm"
         >
           {c.home_hero_sub}
         </p>
-        <a
-          data-cms="Home - Hero - CTA"
-          href="#membership"
-          onClick={(e) => { e.preventDefault(); document.querySelector('#membership')?.scrollIntoView({ behavior: 'smooth' }) }}
-          className="bg-orange hover:bg-orange-hover text-white font-body font-medium px-10 py-3.5 rounded-full text-lg transition-colors shadow-lg"
-        >
-          {c.home_hero_cta}
-        </a>
+
+        <div className="flex items-center gap-6">
+          <a
+            data-cms="Home - Hero - CTA"
+            href="#membership"
+            onClick={(e) => { e.preventDefault(); document.querySelector('#membership')?.scrollIntoView({ behavior: 'smooth' }) }}
+            className="font-body font-medium px-8 py-3.5 rounded-full text-base text-white transition-opacity hover:opacity-90"
+            style={{ backgroundColor: GREEN }}
+          >
+            {c.home_hero_cta}
+          </a>
+          <button
+            onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+            className="text-white/50 hover:text-white font-body text-sm transition-colors flex items-center gap-2"
+          >
+            Learn more <span className="text-base">↓</span>
+          </button>
+        </div>
       </div>
     </section>
   )
@@ -63,64 +71,71 @@ function Hero() {
 
 function About() {
   return (
-    <section
-      className="py-24 px-4 overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, rgba(122,178,4,0.09) 0%, #12121F 38%)' }}
-    >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <AnimatedSection>
-          <p
-            data-cms="Home - About - Label"
-            className="uppercase text-orange text-xs font-heading tracking-[0.2em] mb-3"
+    <section id="about" className="bg-navy-dark overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Image — full bleed, no framing */}
+        <AnimatedSection className="relative min-h-[420px] lg:min-h-[600px]">
+          <img
+            src={c.home_about_image}
+            data-cms="Home - About - Image"
+            alt="Arena Fitness"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Est. badge sits in the image itself */}
+          <div
+            className="absolute bottom-8 right-8 px-5 py-3 rounded-lg"
+            style={{ backgroundColor: 'rgba(13,13,26,0.88)', border: `1px solid rgba(122,178,4,0.3)` }}
           >
-            {c.home_about_label}
-          </p>
-          <h2
-            data-cms="Home - About - Heading"
-            className="font-heading uppercase text-white text-4xl md:text-6xl leading-none mb-2"
-          >
-            {c.home_about_heading}
-          </h2>
-          <Accent center={false} />
-          <p
-            data-cms="Home - About - Body"
-            className="text-[#B0B0C0] font-body text-base leading-relaxed mb-8 max-w-lg"
-          >
-            {c.home_about_body}
-          </p>
-          <ul className="space-y-3 mb-10">
-            {c.home_about_features.map((f, i) => (
-              <li key={i} className="flex items-start gap-3 font-body text-sm">
-                <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: GREEN }}>✓</span>
-                <span data-cms={`Home - About - Feature ${i + 1}`} className="text-white">{f.text}</span>
-              </li>
-            ))}
-          </ul>
-          <a
-            href="#membership"
-            onClick={(e) => { e.preventDefault(); document.querySelector('#membership')?.scrollIntoView({ behavior: 'smooth' }) }}
-            data-cms="Home - About - CTA"
-            className="inline-flex items-center gap-2 bg-orange hover:bg-orange-hover text-white font-body font-medium px-8 py-3.5 rounded-full transition-colors"
-          >
-            {c.home_about_cta}
-            <span className="text-lg leading-none">→</span>
-          </a>
+            <p className="font-heading uppercase text-xl leading-none" style={{ color: GREEN }}>Est. 2010</p>
+            <p className="text-[#B0B0C0] text-xs font-body mt-0.5">Trusted by West Auckland</p>
+          </div>
         </AnimatedSection>
 
-        <AnimatedSection delay={150}>
-          <div className="relative">
-            <div className="absolute -top-4 -left-4 w-full h-full rounded-lg opacity-25" style={{ border: `2px solid ${GREEN}` }} />
-            <img
-              src={c.home_about_image}
-              data-cms="Home - About - Image"
-              alt="Arena Fitness"
-              className="relative w-full rounded-lg object-cover"
-              style={{ maxHeight: '540px' }}
-            />
-            <div className="absolute bottom-6 -left-6 bg-navy-mid border border-navy-border rounded-lg px-5 py-4 shadow-xl">
-              <p className="font-heading uppercase text-2xl leading-none" style={{ color: GREEN }}>Est. 2010</p>
-              <p className="text-[#B0B0C0] text-xs font-body mt-1">Trusted by West Auckland</p>
-            </div>
+        {/* Text — generous padding */}
+        <AnimatedSection delay={100}>
+          <div className="py-20 px-8 lg:px-16 flex flex-col justify-center">
+            <p
+              data-cms="Home - About - Label"
+              className="font-body text-xs tracking-[0.25em] uppercase font-medium mb-4"
+              style={{ color: GREEN }}
+            >
+              {c.home_about_label}
+            </p>
+            <h2
+              data-cms="Home - About - Heading"
+              className="font-heading uppercase text-white text-4xl md:text-5xl leading-none mb-4"
+            >
+              {c.home_about_heading}
+            </h2>
+            <div className="w-10 h-px mb-7" style={{ backgroundColor: GREEN }} />
+            <p
+              data-cms="Home - About - Body"
+              className="text-[#B0B0C0] font-body text-base leading-relaxed mb-8"
+            >
+              {c.home_about_body}
+            </p>
+
+            <ul className="space-y-3 mb-10">
+              {c.home_about_features.map((f, i) => (
+                <li key={i} className="flex items-start gap-3 font-body text-sm">
+                  <span
+                    className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-[10px] font-bold"
+                    style={{ backgroundColor: GREEN }}
+                  >✓</span>
+                  <span data-cms={`Home - About - Feature ${i + 1}`} className="text-white/85">{f.text}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#membership"
+              onClick={(e) => { e.preventDefault(); document.querySelector('#membership')?.scrollIntoView({ behavior: 'smooth' }) }}
+              data-cms="Home - About - CTA"
+              className="self-start font-body font-medium px-8 py-3.5 rounded-full text-white text-sm transition-opacity hover:opacity-90"
+              style={{ backgroundColor: GREEN }}
+            >
+              {c.home_about_cta}
+            </a>
           </div>
         </AnimatedSection>
       </div>
@@ -130,102 +145,36 @@ function About() {
 
 function Gallery() {
   return (
-    <section className="bg-navy py-16">
-      <AnimatedSection>
-        <div className="flex gap-4 overflow-x-auto px-4 md:px-8 pb-4">
-          {c.home_gallery.map((item, i) => (
-            <div key={i} className="relative h-72 w-80 flex-shrink-0 overflow-hidden rounded-sm group">
-              <img
-                src={item.image}
-                data-cms={`Home - Gallery - Photo ${i + 1}`}
-                alt={`Arena Fitness ${i + 1}`}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300" style={{ backgroundColor: GREEN }} />
-            </div>
-          ))}
-        </div>
-      </AnimatedSection>
-    </section>
-  )
-}
-
-function Memberships() {
-  return (
-    <section id="membership" className="relative bg-navy py-20 px-4" style={DOT_BG}>
+    <section className="bg-navy py-20 px-4 md:px-8">
       <AnimatedSection>
         <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h2
-              data-cms="Home - Memberships - Heading"
-              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none"
-            >
-              {c.home_memberships_heading}
-            </h2>
-            <Accent />
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2
+                data-cms="Home - Gallery - Heading"
+                className="font-heading uppercase text-white text-3xl md:text-4xl leading-none"
+              >
+                {c.home_gallery_heading}
+              </h2>
+              <div className="w-10 h-px mt-3" style={{ backgroundColor: GREEN }} />
+            </div>
+            <p className="text-[#B0B0C0] font-body text-sm hidden md:block">Inside The Trusts Arena, Henderson</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-            {c.home_memberships.map((plan, i) => (
-              <AnimatedSection key={plan.plan} delay={i * 80}>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+            {c.home_gallery.map((item, i) => (
+              <div key={i} className="relative overflow-hidden rounded-sm group" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src={item.image}
+                  data-cms={`Home - Gallery - Photo ${i + 1}`}
+                  alt={`Arena Fitness ${i + 1}`}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
                 <div
-                  className={`relative flex flex-col bg-navy-dark border rounded-lg p-6 h-full transition-transform hover:-translate-y-1 duration-300 ${
-                    plan.plan === '12-Month'
-                      ? 'border-navy-border'
-                      : 'border-navy-border'
-                  }`}
-                  style={plan.plan === '12-Month' ? { borderTop: `4px solid ${GREEN}` } : {}}
-                >
-                  {plan.plan === '12-Month' && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-white text-xs font-body font-medium px-3 py-1 rounded-full whitespace-nowrap" style={{ backgroundColor: GREEN }}>
-                      Most Popular
-                    </span>
-                  )}
-                  <h3
-                    data-cms={`Home - Memberships - Plan ${i + 1}`}
-                    className="font-heading uppercase text-white text-2xl leading-none mb-3"
-                  >
-                    {plan.plan}
-                  </h3>
-                  <p
-                    data-cms={`Home - Memberships - Price ${i + 1}`}
-                    className="font-heading text-4xl leading-none mb-1"
-                    style={{ color: GREEN }}
-                  >
-                    {plan.price}
-                  </p>
-                  <p
-                    data-cms={`Home - Memberships - Period ${i + 1}`}
-                    className="text-[#B0B0C0] text-sm font-body mb-5"
-                  >
-                    {plan.period}
-                  </p>
-                  <ul className="space-y-2 mb-6 flex-1">
-                    {plan.features.map((f, j) => (
-                      <li key={j} className="flex items-start gap-2 text-[#B0B0C0] text-sm font-body">
-                        <span className="mt-0.5 flex-shrink-0" style={{ color: GREEN }}>✓</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    data-cms={`Home - Memberships - CTA ${i + 1}`}
-                    href="https://arenafitnessandboxing.co.nz/sign-up-online/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center text-white font-body font-medium px-6 py-2.5 rounded-full transition-colors mb-3"
-                    style={{ backgroundColor: GREEN }}
-                  >
-                    {plan.cta}
-                  </a>
-                  <p
-                    data-cms={`Home - Memberships - Note ${i + 1}`}
-                    className="text-[#B0B0C0] text-xs font-body text-center leading-relaxed"
-                  >
-                    {plan.note}
-                  </p>
-                </div>
-              </AnimatedSection>
+                  className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-400"
+                  style={{ backgroundColor: GREEN }}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -234,61 +183,97 @@ function Memberships() {
   )
 }
 
-const classIconMap = {
-  Pilates: Activity,
-  'Arena HIIT 30': Zap,
-  'Cycle Core': Bike,
-  'Box-Fit': Shield,
-  'Arena Functional': Dumbbell,
-  'Box Vita': Heart,
-}
-
-function Classes() {
+function Memberships() {
   return (
-    <section id="classes" className="bg-navy-dark py-20 px-4">
+    <section id="membership" className="bg-navy-dark py-24 px-4">
       <AnimatedSection>
         <div className="max-w-7xl mx-auto">
-          <div className="text-center">
+          <div className="mb-14">
             <h2
-              data-cms="Home - Classes - Heading"
-              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none"
+              data-cms="Home - Memberships - Heading"
+              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none mb-3"
             >
-              {c.home_classes_heading}
+              {c.home_memberships_heading}
             </h2>
-            <Accent />
+            <div className="w-10 h-px" style={{ backgroundColor: GREEN }} />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {c.home_classes.map((item, i) => {
-              const Icon = classIconMap[item.title] || Activity
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+            {c.home_memberships.map((plan, i) => {
+              const isFeatured = plan.plan === '12-Month'
               return (
-                <AnimatedSection key={item.title} delay={i * 60}>
-                  <div className="relative bg-navy p-6 rounded-lg h-full flex flex-col overflow-hidden group hover:-translate-y-1 transition-transform duration-300" style={{ borderLeft: `4px solid ${GREEN}` }}>
-                    <div className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-5 -translate-y-8 translate-x-8" style={{ backgroundColor: GREEN }} />
-                    <div className="mb-3" style={{ color: GREEN }}>
-                      <Icon size={28} strokeWidth={1.5} />
-                    </div>
+                <AnimatedSection key={plan.plan} delay={i * 70}>
+                  <div
+                    className="relative flex flex-col rounded-2xl p-7 h-full transition-transform hover:-translate-y-1 duration-300"
+                    style={isFeatured
+                      ? { backgroundColor: GREEN }
+                      : { backgroundColor: '#12121F', border: '1px solid #2A2A40' }
+                    }
+                  >
+                    {isFeatured && (
+                      <span
+                        className="absolute -top-3 left-6 text-xs font-body font-semibold px-3 py-1 rounded-full"
+                        style={{ backgroundColor: NAVY, color: GREEN }}
+                      >
+                        Most Popular
+                      </span>
+                    )}
+
                     <h3
-                      data-cms={`Home - Classes - Title ${i + 1}`}
-                      className="font-heading uppercase text-white text-xl leading-none mb-2"
+                      data-cms={`Home - Memberships - Plan ${i + 1}`}
+                      className="font-heading uppercase text-2xl leading-none mb-4"
+                      style={{ color: isFeatured ? NAVY : '#ffffff' }}
                     >
-                      {item.title}
+                      {plan.plan}
                     </h3>
+
                     <p
-                      data-cms={`Home - Classes - Desc ${i + 1}`}
-                      className="text-[#B0B0C0] font-body text-sm leading-relaxed flex-1 mb-4"
+                      data-cms={`Home - Memberships - Price ${i + 1}`}
+                      className="font-heading text-5xl leading-none mb-1"
+                      style={{ color: isFeatured ? NAVY : GREEN }}
                     >
-                      {item.desc}
+                      {plan.price}
                     </p>
+                    <p
+                      data-cms={`Home - Memberships - Period ${i + 1}`}
+                      className="font-body text-sm mb-6"
+                      style={{ color: isFeatured ? 'rgba(13,13,26,0.65)' : '#B0B0C0' }}
+                    >
+                      {plan.period}
+                    </p>
+
+                    <ul className="space-y-2.5 mb-7 flex-1">
+                      {plan.features.map((f, j) => (
+                        <li key={j} className="flex items-start gap-2.5 font-body text-sm">
+                          <span
+                            className="mt-0.5 flex-shrink-0 font-bold"
+                            style={{ color: isFeatured ? NAVY : GREEN }}
+                          >✓</span>
+                          <span style={{ color: isFeatured ? 'rgba(13,13,26,0.8)' : '#B0B0C0' }}>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+
                     <a
-                      href="https://waitakere.gymmasteronline.com/portal/login"
+                      data-cms={`Home - Memberships - CTA ${i + 1}`}
+                      href="https://arenafitnessandboxing.co.nz/sign-up-online/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-body hover:underline font-medium"
-                      style={{ color: GREEN }}
+                      className="block text-center font-body font-semibold text-sm px-6 py-3 rounded-full transition-opacity hover:opacity-90 mb-4"
+                      style={isFeatured
+                        ? { backgroundColor: NAVY, color: '#ffffff' }
+                        : { backgroundColor: GREEN, color: '#ffffff' }
+                      }
                     >
-                      Book a Class →
+                      {plan.cta}
                     </a>
+                    <p
+                      data-cms={`Home - Memberships - Note ${i + 1}`}
+                      className="font-body text-xs text-center leading-relaxed"
+                      style={{ color: isFeatured ? 'rgba(13,13,26,0.55)' : '#6B6B80' }}
+                    >
+                      {plan.note}
+                    </p>
                   </div>
                 </AnimatedSection>
               )
@@ -300,24 +285,95 @@ function Classes() {
   )
 }
 
+const classNumbers = ['01', '02', '03', '04', '05', '06']
+
+function Classes() {
+  return (
+    <section id="classes" className="bg-navy py-24 px-4">
+      <AnimatedSection>
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-14">
+            <h2
+              data-cms="Home - Classes - Heading"
+              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none mb-3"
+            >
+              {c.home_classes_heading}
+            </h2>
+            <div className="w-10 h-px" style={{ backgroundColor: GREEN }} />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {c.home_classes.map((item, i) => (
+              <AnimatedSection key={item.title} delay={i * 55}>
+                <div
+                  className="relative flex flex-col rounded-2xl p-7 h-full transition-transform hover:-translate-y-1 duration-300 overflow-hidden"
+                  style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}
+                >
+                  {/* Large decorative number */}
+                  <span
+                    className="absolute top-5 right-6 font-heading text-6xl leading-none select-none"
+                    style={{ color: 'rgba(122,178,4,0.12)' }}
+                  >
+                    {classNumbers[i]}
+                  </span>
+
+                  <span
+                    className="font-heading text-sm mb-4 block"
+                    style={{ color: GREEN }}
+                  >
+                    {classNumbers[i]}
+                  </span>
+
+                  <h3
+                    data-cms={`Home - Classes - Title ${i + 1}`}
+                    className="font-heading uppercase text-white text-xl leading-none mb-3"
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    data-cms={`Home - Classes - Desc ${i + 1}`}
+                    className="text-[#B0B0C0] font-body text-sm leading-relaxed flex-1 mb-5"
+                  >
+                    {item.desc}
+                  </p>
+                  <a
+                    href="https://waitakere.gymmasteronline.com/portal/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-sm font-medium transition-opacity hover:opacity-75"
+                    style={{ color: GREEN }}
+                  >
+                    Book a Class →
+                  </a>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+    </section>
+  )
+}
+
 function Stats() {
   return (
-    <section className="py-16 px-4" style={{ backgroundColor: GREEN }}>
+    <section className="py-20 px-4" style={{ backgroundColor: GREEN }}>
       <AnimatedSection>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
           {c.home_stats.map((stat, i) => (
             <AnimatedSection key={stat.label} delay={i * 80}>
               <div>
                 <p
                   data-cms={`Home - Stats - Value ${i + 1}`}
-                  className="font-heading text-5xl uppercase leading-none mb-2 text-white"
+                  className="font-heading text-5xl md:text-6xl uppercase leading-none mb-2 text-white"
                 >
                   {stat.value}
                 </p>
+                <div className="w-6 h-px mx-auto mb-2" style={{ backgroundColor: 'rgba(0,0,0,0.25)' }} />
                 <p
                   data-cms={`Home - Stats - Label ${i + 1}`}
-                  className="text-sm font-body font-medium"
-                  style={{ color: 'rgba(0,20,0,0.65)' }}
+                  className="font-body text-xs uppercase tracking-widest font-medium"
+                  style={{ color: 'rgba(0,25,0,0.6)' }}
                 >
                   {stat.label}
                 </p>
@@ -332,48 +388,47 @@ function Stats() {
 
 function CTABanner() {
   return (
-    <section className="bg-navy-dark overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
-        <AnimatedSection>
-          <div className="py-20 px-8 lg:px-14">
-            <h2
-              data-cms="Home - CTA - Heading"
-              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none mb-2"
-            >
-              {c.home_cta_heading}
-            </h2>
-            <div className="h-1 w-14 rounded-full mb-6" style={{ backgroundColor: GREEN }} />
-            <p
-              data-cms="Home - CTA - Body"
-              className="text-[#B0B0C0] font-body text-base leading-relaxed max-w-md"
-            >
-              {c.home_cta_body}
-            </p>
+    <section className="bg-navy-dark py-24 px-4">
+      <AnimatedSection>
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-3 mb-7">
+            <div className="w-8 h-px" style={{ backgroundColor: GREEN }} />
+            <span className="font-body text-xs tracking-[0.25em] uppercase font-medium" style={{ color: GREEN }}>
+              Ready to start?
+            </span>
+            <div className="w-8 h-px" style={{ backgroundColor: GREEN }} />
           </div>
-        </AnimatedSection>
 
-        <AnimatedSection delay={120}>
-          <div className="flex flex-col items-center justify-center py-20 px-8 lg:px-14 text-center bg-navy-dark border-t lg:border-t-0 lg:border-l border-navy-border">
-            <p className="text-[#B0B0C0] font-body text-sm uppercase tracking-widest mb-2">Call us today</p>
-            <p
-              data-cms="Home - CTA - Phone"
-              className="font-heading text-4xl md:text-5xl leading-none mb-8"
-              style={{ color: GREEN }}
-            >
-              {c.phone}
-            </p>
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-              data-cms="Home - CTA - Button"
-              className="inline-block text-white font-body font-medium px-8 py-3.5 rounded-full text-base transition-opacity hover:opacity-90"
-              style={{ backgroundColor: GREEN }}
-            >
-              {c.home_cta_button}
-            </a>
-          </div>
-        </AnimatedSection>
-      </div>
+          <h2
+            data-cms="Home - CTA - Heading"
+            className="font-heading uppercase text-white text-4xl md:text-6xl leading-none mb-5"
+          >
+            {c.home_cta_heading}
+          </h2>
+          <p
+            data-cms="Home - CTA - Body"
+            className="text-[#B0B0C0] font-body text-base leading-relaxed mb-8 max-w-xl mx-auto"
+          >
+            {c.home_cta_body}
+          </p>
+          <p
+            data-cms="Home - CTA - Phone"
+            className="font-heading text-4xl md:text-5xl leading-none mb-10"
+            style={{ color: GREEN }}
+          >
+            {c.phone}
+          </p>
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+            data-cms="Home - CTA - Button"
+            className="inline-block font-body font-medium px-10 py-4 rounded-full text-white text-base transition-opacity hover:opacity-90"
+            style={{ backgroundColor: GREEN }}
+          >
+            {c.home_cta_button}
+          </a>
+        </div>
+      </AnimatedSection>
     </section>
   )
 }
@@ -385,42 +440,43 @@ function Contact() {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
   const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true) }
 
+  const inputStyle = { backgroundColor: '#0D0D1A', border: '1px solid #2A2A40', borderRadius: '0.75rem', width: '100%', padding: '0.875rem 1rem', color: '#fff', fontFamily: 'Inter, sans-serif', fontSize: '0.875rem', outline: 'none' }
+
   return (
-    <section id="contact" className="relative bg-navy py-20 px-4" style={DOT_BG}>
+    <section id="contact" className="bg-navy py-24 px-4">
       <AnimatedSection>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
+            <p className="font-body text-xs tracking-[0.25em] uppercase font-medium mb-4" style={{ color: GREEN }}>
+              Come say hi
+            </p>
             <h2
               data-cms="Home - Contact - Heading"
-              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none mb-2"
+              className="font-heading uppercase text-white text-3xl md:text-5xl leading-none mb-3"
             >
               {c.contact_heading}
             </h2>
-            <div className="h-1 w-14 rounded-full mb-8" style={{ backgroundColor: GREEN }} />
+            <div className="w-10 h-px mb-10" style={{ backgroundColor: GREEN }} />
 
-            <div className="space-y-5">
+            <div className="space-y-6 mb-10">
               <div className="flex items-start gap-4">
-                <MapPin className="flex-shrink-0 mt-0.5" size={20} style={{ color: GREEN }} />
+                <MapPin size={16} className="flex-shrink-0 mt-0.5" style={{ color: GREEN }} />
                 <p data-cms="Home - Contact - Address" className="text-[#B0B0C0] font-body text-sm leading-relaxed">
                   {c.address}
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <Phone className="flex-shrink-0" size={20} style={{ color: GREEN }} />
-                <p data-cms="Home - Contact - Phone" className="text-[#B0B0C0] font-body text-sm">
-                  {c.phone}
-                </p>
+                <Phone size={16} className="flex-shrink-0" style={{ color: GREEN }} />
+                <p data-cms="Home - Contact - Phone" className="text-[#B0B0C0] font-body text-sm">{c.phone}</p>
               </div>
               <div className="flex items-center gap-4">
-                <Mail className="flex-shrink-0" size={20} style={{ color: GREEN }} />
-                <p data-cms="Home - Contact - Email" className="text-[#B0B0C0] font-body text-sm">
-                  {c.email}
-                </p>
+                <Mail size={16} className="flex-shrink-0" style={{ color: GREEN }} />
+                <p data-cms="Home - Contact - Email" className="text-[#B0B0C0] font-body text-sm">{c.email}</p>
               </div>
             </div>
 
-            <div className="mt-8 p-5 bg-navy-dark border border-navy-border rounded-lg" style={{ borderLeft: `3px solid ${GREEN}` }}>
-              <h3 className="font-heading uppercase text-white text-lg mb-3">Opening Hours</h3>
+            <div className="rounded-2xl p-6 mb-8" style={{ backgroundColor: '#12121F', borderLeft: `3px solid ${GREEN}` }}>
+              <h3 className="font-heading uppercase text-white text-base mb-4 tracking-wide">Opening Hours</h3>
               <ul className="space-y-1.5 text-[#B0B0C0] text-sm font-body">
                 <li>Mon – Thu: 5am – 9:30pm</li>
                 <li>Fri: 5am – 8pm</li>
@@ -428,16 +484,14 @@ function Contact() {
               </ul>
             </div>
 
-            <div className="mt-6">
-              <a
-                data-cms="Home - Contact - Button"
-                href="mailto:fitness@thetrustsarena.co.nz"
-                className="inline-block text-white font-body font-medium px-7 py-3 rounded-full transition-opacity hover:opacity-90"
-                style={{ backgroundColor: GREEN }}
-              >
-                {c.contact_button}
-              </a>
-            </div>
+            <a
+              data-cms="Home - Contact - Button"
+              href="mailto:fitness@thetrustsarena.co.nz"
+              className="inline-block font-body font-medium px-7 py-3 rounded-full text-white text-sm transition-opacity hover:opacity-90"
+              style={{ backgroundColor: GREEN }}
+            >
+              {c.contact_button}
+            </a>
           </div>
 
           <div>
@@ -452,40 +506,35 @@ function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-[#B0B0C0] text-sm font-body mb-1.5">Name *</label>
+                  <label className="block text-[#B0B0C0] text-xs font-body uppercase tracking-wider mb-2">Name *</label>
                   <input type="text" name="name" value={form.name} onChange={handleChange} required
-                    className="w-full bg-navy-dark border border-navy-border rounded-lg px-4 py-3 text-white font-body text-sm focus:outline-none transition-colors"
-                    style={{ '--tw-ring-color': GREEN }}
+                    style={inputStyle} placeholder="Your name"
                     onFocus={e => e.target.style.borderColor = GREEN}
-                    onBlur={e => e.target.style.borderColor = ''}
-                    placeholder="Your name" />
+                    onBlur={e => e.target.style.borderColor = '#2A2A40'} />
                 </div>
                 <div>
-                  <label className="block text-[#B0B0C0] text-sm font-body mb-1.5">Email *</label>
+                  <label className="block text-[#B0B0C0] text-xs font-body uppercase tracking-wider mb-2">Email *</label>
                   <input type="email" name="email" value={form.email} onChange={handleChange} required
-                    className="w-full bg-navy-dark border border-navy-border rounded-lg px-4 py-3 text-white font-body text-sm focus:outline-none transition-colors"
+                    style={inputStyle} placeholder="your@email.com"
                     onFocus={e => e.target.style.borderColor = GREEN}
-                    onBlur={e => e.target.style.borderColor = ''}
-                    placeholder="your@email.com" />
+                    onBlur={e => e.target.style.borderColor = '#2A2A40'} />
                 </div>
                 <div>
-                  <label className="block text-[#B0B0C0] text-sm font-body mb-1.5">Phone *</label>
+                  <label className="block text-[#B0B0C0] text-xs font-body uppercase tracking-wider mb-2">Phone *</label>
                   <input type="tel" name="phone" value={form.phone} onChange={handleChange} required
-                    className="w-full bg-navy-dark border border-navy-border rounded-lg px-4 py-3 text-white font-body text-sm focus:outline-none transition-colors"
+                    style={inputStyle} placeholder="Your phone number"
                     onFocus={e => e.target.style.borderColor = GREEN}
-                    onBlur={e => e.target.style.borderColor = ''}
-                    placeholder="Your phone number" />
+                    onBlur={e => e.target.style.borderColor = '#2A2A40'} />
                 </div>
                 <div>
-                  <label className="block text-[#B0B0C0] text-sm font-body mb-1.5">Message *</label>
+                  <label className="block text-[#B0B0C0] text-xs font-body uppercase tracking-wider mb-2">Message *</label>
                   <textarea name="message" value={form.message} onChange={handleChange} required rows={5}
-                    className="w-full bg-navy-dark border border-navy-border rounded-lg px-4 py-3 text-white font-body text-sm focus:outline-none transition-colors resize-none"
+                    style={{ ...inputStyle, resize: 'none' }} placeholder="How can we help?"
                     onFocus={e => e.target.style.borderColor = GREEN}
-                    onBlur={e => e.target.style.borderColor = ''}
-                    placeholder="How can we help?" />
+                    onBlur={e => e.target.style.borderColor = '#2A2A40'} />
                 </div>
                 <button type="submit"
-                  className="w-full text-white font-body font-medium py-3 rounded-full transition-opacity hover:opacity-90 text-base"
+                  className="w-full font-body font-medium py-3.5 rounded-full text-white text-sm transition-opacity hover:opacity-90"
                   style={{ backgroundColor: GREEN }}
                 >
                   Send Message
