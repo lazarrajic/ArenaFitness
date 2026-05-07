@@ -130,4 +130,124 @@ export default {
 
   // Footer
   footer_tagline: 'Come and see why we\'re the best gym in West Auckland!',
+
+  // Our Team
+  team_hero_image: '/images/photo-01.jpg',
+  team_hero_heading: 'Meet Our Team',
+  team_hero_sub: 'Expert trainers committed to your goals — from day one to every milestone.',
+  team_members_heading: 'Our Trainers',
+  team_members: [
+    {
+      name: 'Mike Tuilagi',
+      role: 'Head of Personal Training',
+      bio: 'With 10 years in strength and conditioning, Mike builds bespoke programmes for every fitness level — from beginner to competitive athlete.',
+      image: '/images/photo-05.jpg',
+    },
+    {
+      name: 'Sara Davison',
+      role: 'Group Fitness Coordinator',
+      bio: 'Sara leads our Pilates, HIIT and Cycle Core timetable. Her infectious energy makes every class a standout experience.',
+      image: '/images/photo-06.jpg',
+    },
+    {
+      name: 'James Kohere',
+      role: 'Boxing Coach',
+      bio: 'Former amateur champion turned coach, James runs Box-Fit and Box Vita with a focus on technique, confidence and community.',
+      image: '/images/photo-07.jpg',
+    },
+    {
+      name: 'Asha Patel',
+      role: 'Personal Trainer',
+      bio: 'Specialising in functional movement and rehabilitation, Asha designs programmes that help members move better and feel stronger.',
+      image: '/images/photo-08.jpg',
+    },
+    {
+      name: 'Liam Ropati',
+      role: 'Strength & Conditioning Coach',
+      bio: 'Liam brings a high-performance mindset to every session. His 8-Week Challenge programme has helped dozens of members hit new goals.',
+      image: '/images/photo-10.jpg',
+    },
+    {
+      name: 'Priya Nair',
+      role: 'Wellness & Recovery Coach',
+      bio: 'Priya blends movement science with mindfulness to help members recover smarter, move better, and build lasting fitness habits.',
+      image: '/images/photo-11.jpg',
+    },
+  ],
+  team_cta_heading: 'Ready to Train With Us?',
+  team_cta_body: 'Book a free introductory session with one of our trainers and take the first step towards your goals.',
+  team_cta_button: 'Get in Touch',
+
+  // Blog
+  blog_hero_image: '/images/photo-02.jpg',
+  blog_hero_heading: 'News & Tips',
+  blog_hero_sub: 'Training advice, gym updates and community stories from Arena Fitness & Boxing.',
+  blog_posts_heading: 'Latest Articles',
+  blog_posts: [
+    {
+      title: '5 Reasons to Start Strength Training This Winter',
+      date: 'May 2, 2025',
+      category: 'Training Tips',
+      excerpt: 'Winter is actually the best time to build real strength. Here\'s why heading to the gym when it\'s cold outside pays dividends come summer.',
+      image: '/images/photo-04.jpg',
+    },
+    {
+      title: 'What to Expect from Your First Personal Training Session',
+      date: 'April 18, 2025',
+      category: 'Getting Started',
+      excerpt: 'New to personal training? We break down exactly what happens in your first session and how to get the most from it.',
+      image: '/images/photo-08.jpg',
+    },
+    {
+      title: 'Box-Fit vs Traditional Boxing: What\'s the Difference?',
+      date: 'April 5, 2025',
+      category: 'Classes',
+      excerpt: 'Both are brilliant workouts — but they serve very different purposes. We help you decide which class is right for you.',
+      image: '/images/photo-10.jpg',
+    },
+  ],
+
+  // 8-Week Challenge
+  challenge_hero_image: '/images/photo-09.png',
+  challenge_hero_heading: 'The 8-Week Challenge',
+  challenge_hero_sub: 'A structured programme designed to transform your fitness — and keep it.',
+  challenge_hero_cta: 'Start Your Challenge',
+  challenge_intro_heading: 'Reset. Build. Transform.',
+  challenge_intro_body: 'Our 8-Week Challenge is a fully guided fitness programme built to create sustainable habits, improve strength, and deliver results you can see. Each phase is carefully structured so every week builds on the last — no guesswork, just results.',
+  challenge_phases_heading: 'Programme Phases',
+  challenge_phases: [
+    {
+      number: '01',
+      title: 'Foundation',
+      desc: 'Weeks 1–2. Establish your baseline fitness, introduce movement patterns, and lock in the habits that carry through the entire programme.',
+    },
+    {
+      number: '02',
+      title: 'Build',
+      desc: 'Weeks 3–6. Progressive overload kicks in. Strength, endurance and confidence grow week on week with structured training and regular check-ins.',
+    },
+    {
+      number: '03',
+      title: 'Peak',
+      desc: 'Weeks 7–8. You push through your limits. By now the habits are locked in — this phase is about proving to yourself what you\'re truly capable of.',
+    },
+  ],
+  challenge_includes_heading: 'What\'s Included',
+  challenge_includes: [
+    { text: 'Personalised 8-week training programme' },
+    { text: 'Weekly check-ins with your assigned trainer' },
+    { text: 'Nutrition guidance and meal planning support' },
+    { text: 'Access to all group fitness classes' },
+    { text: 'Body composition assessments at start and finish' },
+    { text: 'Private community group for accountability' },
+  ],
+  challenge_results: [
+    { value: '200+', label: 'Members completed' },
+    { value: '8 Weeks', label: 'Guided programme' },
+    { value: '94%', label: 'Report lasting results' },
+    { value: '#1', label: 'West Auckland programme' },
+  ],
+  challenge_cta_heading: 'Ready to Take the Challenge?',
+  challenge_cta_body: 'Spaces are limited each round. Register your interest today and we\'ll be in touch with everything you need to get started.',
+  challenge_cta_button: 'Register Interest',
 }

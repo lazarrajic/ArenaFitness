@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import c from '../../content.js'
 
 const quickLinks = [
@@ -11,10 +11,16 @@ const quickLinks = [
 ]
 
 export default function Footer() {
+  const location = useLocation()
+
   const handleAnchor = (href) => {
     if (href.startsWith('#')) {
-      const el = document.querySelector(href)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
+      if (location.pathname === '/') {
+        const el = document.querySelector(href)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        window.location.href = '/' + href
+      }
     }
   }
 
