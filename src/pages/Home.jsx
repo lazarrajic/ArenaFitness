@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import c from '../../content.js'
 import AnimatedSection from '../components/AnimatedSection'
@@ -198,9 +199,9 @@ function Memberships() {
             <div className="w-10 h-px" style={{ backgroundColor: GREEN }} />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
             {c.home_memberships.map((plan, i) => {
-              const isFeatured = plan.plan === '12-Month'
+              const isFeatured = plan.popular === true
               return (
                 <AnimatedSection key={plan.plan} delay={i * 70}>
                   <div
@@ -278,6 +279,20 @@ function Memberships() {
                 </AnimatedSection>
               )
             })}
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/membership"
+              data-cms="Home - Memberships - View All"
+              className="inline-flex items-center gap-2 font-heading uppercase tracking-widest text-sm transition-opacity hover:opacity-70"
+              style={{ color: GREEN }}
+            >
+              {c.home_memberships_view_all}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
           </div>
         </div>
       </AnimatedSection>

@@ -1,29 +1,15 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import c from '../../content.js'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'Our Team', href: '/our-team' },
-  { label: 'Membership', href: '#membership' },
-  { label: 'Classes', href: '#classes' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Membership', href: '/membership' },
   { label: 'Blog', href: '/blog' },
+  { label: '8-Week Challenge', href: '/8-week' },
 ]
 
 export default function Footer() {
-  const location = useLocation()
-
-  const handleAnchor = (href) => {
-    if (href.startsWith('#')) {
-      if (location.pathname === '/') {
-        const el = document.querySelector(href)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      } else {
-        window.location.href = '/' + href
-      }
-    }
-  }
-
   return (
     <footer className="bg-navy-mid border-t border-navy-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -58,21 +44,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  {link.href.startsWith('#') ? (
-                    <button
-                      onClick={() => handleAnchor(link.href)}
-                      className="text-[#B0B0C0] hover:text-orange transition-colors text-sm"
-                    >
-                      {link.label}
-                    </button>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className="text-[#B0B0C0] hover:text-orange transition-colors text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
+                  <Link
+                    to={link.href}
+                    className="text-[#B0B0C0] hover:text-orange transition-colors text-sm"
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

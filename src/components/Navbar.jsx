@@ -5,9 +5,7 @@ import c from '../../content.js'
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Our Team', href: '/our-team' },
-  { label: 'Membership', href: '#membership' },
-  { label: 'Classes', href: '#classes' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Membership', href: '/membership' },
   { label: 'Blog', href: '/blog' },
   { label: '8-Week', href: '/8-week' },
 ]
@@ -73,14 +71,13 @@ export default function Navbar() {
                   </Link>
                 )
               )}
-              <a
-                href="#membership"
-                onClick={(e) => { e.preventDefault(); handleNavClick('#membership') }}
+              <Link
+                to="/membership"
                 data-cms="Nav - Nav - CTA"
                 className="bg-orange hover:bg-orange-hover text-white text-sm font-body font-medium px-5 py-2 rounded-full transition-colors"
               >
                 {c.nav_cta}
-              </a>
+              </Link>
             </div>
 
             <button
@@ -130,13 +127,13 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <a
-            href="#membership"
-            onClick={(e) => { e.preventDefault(); handleNavClick('#membership') }}
+          <Link
+            to="/membership"
+            onClick={() => setMenuOpen(false)}
             className="bg-orange hover:bg-orange-hover text-white text-xl font-heading uppercase px-8 py-3 rounded-full transition-colors mt-4"
           >
             {c.nav_cta}
-          </a>
+          </Link>
         </div>
       )}
     </>
