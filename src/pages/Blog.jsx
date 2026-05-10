@@ -61,127 +61,62 @@ export default function Blog() {
             </h2>
           </AnimatedSection>
 
-          {/* Featured post — first item only */}
-          {c.blog_posts.map((post, i) => i !== 0 ? null : (
-            <AnimatedSection key={i} className="mb-8">
-              <article className="group relative overflow-hidden rounded-2xl" style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}>
-                <div className="grid grid-cols-1 lg:grid-cols-2">
-                  <div className="relative overflow-hidden" style={{ minHeight: '380px' }}>
-                    <img
-                      src={post.image}
-                      data-cms={`Blog - Post ${i+1} - Image`}
-                      alt={post.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div
-                      className="absolute inset-0 lg:hidden"
-                      style={{ background: 'linear-gradient(to top, rgba(18,18,31,1) 0%, rgba(18,18,31,0) 60%)' }}
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center p-10 lg:p-14">
-                    <div className="flex items-center gap-4 mb-5">
-                      <span
-                        data-cms={`Blog - Post ${i+1} - Category`}
-                        className="inline-block font-heading uppercase tracking-widest text-xs px-3 py-1 rounded-full"
-                        style={{ backgroundColor: 'rgba(122,178,4,0.15)', color: GREEN }}
-                      >
-                        {post.category}
-                      </span>
-                      <span
-                        data-cms={`Blog - Post ${i+1} - Date`}
-                        className="text-[#B0B0C0] text-xs font-body"
-                      >
-                        {post.date}
-                      </span>
-                    </div>
-                    <h3
-                      data-cms={`Blog - Post ${i+1} - Title`}
-                      className="font-heading uppercase text-white text-3xl md:text-4xl leading-tight mb-4"
-                    >
-                      {post.title}
-                    </h3>
-                    <p
-                      data-cms={`Blog - Post ${i+1} - Excerpt`}
-                      className="text-[#B0B0C0] text-base leading-relaxed mb-8"
-                    >
-                      {post.excerpt}
-                    </p>
-                    <button
-                      className="self-start font-heading uppercase tracking-widest text-xs flex items-center gap-2"
-                      style={{ color: GREEN }}
-                      onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
-                      onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-                    >
-                      Read Article
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                  </div>
+          <div data-cms-repeater="Blog - Posts" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {c.blog_posts.map((post, i) => (
+              <div key={i} className="group overflow-hidden rounded-2xl" style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}>
+                <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                  <img
+                    src={post.image}
+                    data-cms-field="image"
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: 'rgba(122,178,4,0.06)' }}
+                  />
                 </div>
-              </article>
-            </AnimatedSection>
-          ))}
-
-          {/* Grid of remaining posts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {c.blog_posts.map((post, i) => i === 0 ? null : (
-              <AnimatedSection key={i} delay={i * 100}>
-                <article className="group overflow-hidden rounded-2xl" style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}>
-                  <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                    <img
-                      src={post.image}
-                      data-cms={`Blog - Post ${i+1} - Image`}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ background: 'rgba(122,178,4,0.06)' }}
-                    />
+                <div className="p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span
+                      data-cms-field="category"
+                      className="inline-block font-heading uppercase tracking-widest text-xs px-3 py-1 rounded-full"
+                      style={{ backgroundColor: 'rgba(122,178,4,0.15)', color: GREEN }}
+                    >
+                      {post.category}
+                    </span>
+                    <span
+                      data-cms-field="date"
+                      className="text-[#B0B0C0] text-xs font-body"
+                    >
+                      {post.date}
+                    </span>
                   </div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span
-                        data-cms={`Blog - Post ${i+1} - Category`}
-                        className="inline-block font-heading uppercase tracking-widest text-xs px-3 py-1 rounded-full"
-                        style={{ backgroundColor: 'rgba(122,178,4,0.15)', color: GREEN }}
-                      >
-                        {post.category}
-                      </span>
-                      <span
-                        data-cms={`Blog - Post ${i+1} - Date`}
-                        className="text-[#B0B0C0] text-xs font-body"
-                      >
-                        {post.date}
-                      </span>
-                    </div>
-                    <h3
-                      data-cms={`Blog - Post ${i+1} - Title`}
-                      className="font-heading uppercase text-white text-2xl leading-tight mb-3"
-                    >
-                      {post.title}
-                    </h3>
-                    <p
-                      data-cms={`Blog - Post ${i+1} - Excerpt`}
-                      className="text-[#B0B0C0] text-sm leading-relaxed mb-6"
-                    >
-                      {post.excerpt}
-                    </p>
-                    <button
-                      className="font-heading uppercase tracking-widest text-xs flex items-center gap-2"
-                      style={{ color: GREEN }}
-                      onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
-                      onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-                    >
-                      Read Article
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                  </div>
-                </article>
-              </AnimatedSection>
+                  <h3
+                    data-cms-field="title"
+                    className="font-heading uppercase text-white text-2xl leading-tight mb-3"
+                  >
+                    {post.title}
+                  </h3>
+                  <p
+                    data-cms-field="excerpt"
+                    className="text-[#B0B0C0] text-sm leading-relaxed mb-6"
+                  >
+                    {post.excerpt}
+                  </p>
+                  <button
+                    className="font-heading uppercase tracking-widest text-xs flex items-center gap-2"
+                    style={{ color: GREEN }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  >
+                    Read Article
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>

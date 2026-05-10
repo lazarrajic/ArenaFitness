@@ -61,47 +61,41 @@ export default function OurTeam() {
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div data-cms-repeater="Team - Members" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {c.team_members.map((member, i) => (
-              <AnimatedSection key={i} delay={i * 80}>
-                <div className="group relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
-                  <img
-                    src={member.image}
-                    data-cms={`Team - Member ${i+1} - Image`}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: 'linear-gradient(to top, rgba(13,13,26,0.97) 0%, rgba(13,13,26,0.55) 45%, rgba(13,13,26,0.0) 100%)' }}
-                  />
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: 'rgba(13,13,26,0.25)' }}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-7">
-                    <p
-                      data-cms={`Team - Member ${i+1} - Role`}
-                      className="font-heading uppercase tracking-widest text-xs mb-2"
-                      style={{ color: GREEN }}
-                    >
-                      {member.role}
-                    </p>
-                    <h3
-                      data-cms={`Team - Member ${i+1} - Name`}
-                      className="font-heading uppercase text-white text-2xl leading-tight mb-3"
-                    >
-                      {member.name}
-                    </h3>
-                    <p
-                      data-cms={`Team - Member ${i+1} - Bio`}
-                      className="text-[#B0B0C0] text-sm leading-relaxed"
-                    >
-                      {member.bio}
-                    </p>
-                  </div>
+              <div key={i} className="group relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
+                <img
+                  src={member.image}
+                  data-cms-field="image"
+                  alt={member.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: 'linear-gradient(to top, rgba(13,13,26,0.97) 0%, rgba(13,13,26,0.55) 45%, rgba(13,13,26,0.0) 100%)' }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-7">
+                  <p
+                    data-cms-field="role"
+                    className="font-heading uppercase tracking-widest text-xs mb-2"
+                    style={{ color: GREEN }}
+                  >
+                    {member.role}
+                  </p>
+                  <h3
+                    data-cms-field="name"
+                    className="font-heading uppercase text-white text-2xl leading-tight mb-3"
+                  >
+                    {member.name}
+                  </h3>
+                  <p
+                    data-cms-field="bio"
+                    className="text-[#B0B0C0] text-sm leading-relaxed"
+                  >
+                    {member.bio}
+                  </p>
                 </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>

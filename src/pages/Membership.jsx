@@ -64,16 +64,15 @@ export default function Membership() {
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div data-cms-repeater="Membership - Plans" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {c.membership_plans.map((plan, i) => (
-              <AnimatedSection key={i} delay={i * 60}>
-                <div
-                  className="relative flex flex-col rounded-2xl p-8 h-full transition-transform hover:-translate-y-1 duration-300"
-                  style={plan.popular
-                    ? { backgroundColor: GREEN }
-                    : { backgroundColor: '#12121F', border: '1px solid #2A2A40' }
-                  }
-                >
+              <div key={i}
+                className="relative flex flex-col rounded-2xl p-8 h-full transition-transform hover:-translate-y-1 duration-300"
+                style={plan.popular
+                  ? { backgroundColor: GREEN }
+                  : { backgroundColor: '#12121F', border: '1px solid #2A2A40' }
+                }
+              >
                   {plan.popular && (
                     <span
                       className="absolute -top-3 left-6 text-xs font-body font-semibold px-3 py-1 rounded-full"
@@ -84,7 +83,7 @@ export default function Membership() {
                   )}
 
                   <h3
-                    data-cms={`Membership - Plan ${i+1} - Name`}
+                    data-cms-field="name"
                     className="font-heading uppercase text-2xl leading-none mb-5"
                     style={{ color: plan.popular ? NAVY : '#ffffff' }}
                   >
@@ -93,14 +92,14 @@ export default function Membership() {
 
                   <div className="mb-6">
                     <p
-                      data-cms={`Membership - Plan ${i+1} - Price`}
+                      data-cms-field="price"
                       className="font-heading text-5xl leading-none mb-1"
                       style={{ color: plan.popular ? NAVY : GREEN }}
                     >
                       {plan.price}
                     </p>
                     <p
-                      data-cms={`Membership - Plan ${i+1} - Period`}
+                      data-cms-field="period"
                       className="font-body text-sm"
                       style={{ color: plan.popular ? 'rgba(13,13,26,0.65)' : '#B0B0C0' }}
                     >
@@ -121,7 +120,7 @@ export default function Membership() {
                   </ul>
 
                   <a
-                    data-cms={`Membership - Plan ${i+1} - CTA`}
+                    data-cms-field="cta"
                     href="https://arenafitnessandboxing.co.nz/sign-up-online/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -134,14 +133,13 @@ export default function Membership() {
                     {plan.cta}
                   </a>
                   <p
-                    data-cms={`Membership - Plan ${i+1} - Note`}
+                    data-cms-field="note"
                     className="font-body text-xs text-center leading-relaxed"
                     style={{ color: plan.popular ? 'rgba(13,13,26,0.55)' : '#6B6B80' }}
                   >
                     {plan.note}
                   </p>
-                </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>

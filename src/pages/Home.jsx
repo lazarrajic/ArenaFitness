@@ -317,36 +317,34 @@ function Classes() {
             <div className="w-10 h-px" style={{ backgroundColor: GREEN }} />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div data-cms-repeater="Home - Classes" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {c.home_classes.map((item, i) => (
-              <AnimatedSection key={item.title} delay={i * 55}>
-                <div
-                  className="relative flex flex-col rounded-2xl p-7 h-full transition-transform hover:-translate-y-1 duration-300 overflow-hidden"
-                  style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}
-                >
-                  {/* Large decorative number */}
+              <div key={item.title}
+                className="relative flex flex-col rounded-2xl p-7 h-full transition-transform hover:-translate-y-1 duration-300 overflow-hidden"
+                style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}
+              >
                   <span
                     className="absolute top-5 right-6 font-heading text-6xl leading-none select-none"
                     style={{ color: 'rgba(122,178,4,0.12)' }}
                   >
-                    {classNumbers[i]}
+                    {classNumbers[i % classNumbers.length]}
                   </span>
 
                   <span
                     className="font-heading text-sm mb-4 block"
                     style={{ color: GREEN }}
                   >
-                    {classNumbers[i]}
+                    {classNumbers[i % classNumbers.length]}
                   </span>
 
                   <h3
-                    data-cms={`Home - Classes - Title ${i + 1}`}
+                    data-cms-field="title"
                     className="font-heading uppercase text-white text-xl leading-none mb-3"
                   >
                     {item.title}
                   </h3>
                   <p
-                    data-cms={`Home - Classes - Desc ${i + 1}`}
+                    data-cms-field="desc"
                     className="text-[#B0B0C0] font-body text-sm leading-relaxed flex-1 mb-5"
                   >
                     {item.desc}
@@ -360,8 +358,7 @@ function Classes() {
                   >
                     Book a Class →
                   </a>
-                </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>
