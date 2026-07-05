@@ -116,14 +116,16 @@ function About() {
               {c.home_about_body}
             </p>
 
-            <ul className="space-y-3 mb-10">
+            <ul data-cms-repeater="Home - About - Features" data-cms-shape="chip"
+              data-cms-min="3" data-cms-max="6" data-cms-overflow="wrap"
+              className="space-y-3 mb-10">
               {c.home_about_features.map((f, i) => (
                 <li key={i} className="flex items-start gap-3 font-body text-sm">
                   <span
                     className="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-[10px] font-bold"
                     style={{ backgroundColor: GREEN }}
                   >✓</span>
-                  <span data-cms={`Home - About - Feature ${i + 1}`} className="text-white/85">{f.text}</span>
+                  <span data-cms-field="text" className="text-white/85">{f.text}</span>
                 </li>
               ))}
             </ul>
@@ -162,12 +164,13 @@ function Gallery() {
             <p className="text-[#B0B0C0] font-body text-sm hidden md:block">Inside The Trusts Arena, Henderson</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+          <div data-cms-repeater="Home - Gallery" data-cms-min="3" data-cms-recommend="6" data-cms-max="12" data-cms-overflow="wrap"
+            className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
             {c.home_gallery.map((item, i) => (
               <div key={i} className="relative overflow-hidden rounded-sm group" style={{ aspectRatio: '4/3' }}>
                 <img
                   src={item.image}
-                  data-cms={`Home - Gallery - Photo ${i + 1}`}
+                  data-cms-field="image"
                   alt={`Arena Fitness ${i + 1}`}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -317,7 +320,7 @@ function Classes() {
             <div className="w-10 h-px" style={{ backgroundColor: GREEN }} />
           </div>
 
-          <div data-cms-repeater="Home - Classes" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div data-cms-repeater="Home - Classes" data-cms-shape="card" data-cms-min="3" data-cms-recommend="6" data-cms-max="9" data-cms-overflow="wrap" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {c.home_classes.map((item, i) => (
               <div key={item.title}
                 className="relative flex flex-col rounded-2xl p-7 h-full transition-transform hover:-translate-y-1 duration-300 overflow-hidden"
@@ -371,19 +374,21 @@ function Stats() {
   return (
     <section className="py-20 px-4" style={{ backgroundColor: GREEN }}>
       <AnimatedSection>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+        <div data-cms-repeater="Home - Stats" data-cms-shape="stat"
+          data-cms-min="2" data-cms-recommend="4" data-cms-max="8" data-cms-overflow="wrap"
+          className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
           {c.home_stats.map((stat, i) => (
             <AnimatedSection key={stat.label} delay={i * 80}>
               <div>
                 <p
-                  data-cms={`Home - Stats - Value ${i + 1}`}
+                  data-cms-field="value"
                   className="font-heading text-5xl md:text-6xl uppercase leading-none mb-2 text-white"
                 >
                   {stat.value}
                 </p>
                 <div className="w-6 h-px mx-auto mb-2" style={{ backgroundColor: 'rgba(0,0,0,0.25)' }} />
                 <p
-                  data-cms={`Home - Stats - Label ${i + 1}`}
+                  data-cms-field="label"
                   className="font-body text-xs uppercase tracking-widest font-medium"
                   style={{ color: 'rgba(0,25,0,0.6)' }}
                 >
