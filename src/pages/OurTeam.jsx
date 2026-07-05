@@ -61,7 +61,7 @@ export default function OurTeam() {
             </h2>
           </AnimatedSection>
 
-          <div data-cms-repeater="Team - Members" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div data-cms-repeater="Team - Members" data-cms-shape="person" data-cms-min="2" data-cms-recommend="6" data-cms-max="12" data-cms-overflow="wrap" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {c.team_members.map((member, i) => (
               <div key={i} className="group relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
                 <img

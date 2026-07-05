@@ -61,7 +61,7 @@ export default function Blog() {
             </h2>
           </AnimatedSection>
 
-          <div data-cms-repeater="Blog - Posts" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div data-cms-repeater="Blog - Posts" data-cms-shape="list" data-cms-min="1" data-cms-overflow="wrap" className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {c.blog_posts.map((post, i) => (
               <div key={i} className="group overflow-hidden rounded-2xl" style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}>
                 <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>

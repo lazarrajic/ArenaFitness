@@ -105,7 +105,9 @@ export default function EightWeek() {
             </AnimatedSection>
 
             <AnimatedSection delay={150}>
-              <div className="grid grid-cols-2 gap-4">
+              <div data-cms-repeater="EightWeek - Results" data-cms-shape="stat"
+                data-cms-min="2" data-cms-recommend="4" data-cms-max="8" data-cms-overflow="wrap"
+                className="grid grid-cols-2 gap-4">
                 {c.challenge_results.map((result, i) => (
                   <div
                     key={i}
@@ -113,14 +115,14 @@ export default function EightWeek() {
                     style={{ backgroundColor: '#12121F', border: '1px solid #2A2A40' }}
                   >
                     <p
-                      data-cms={`EightWeek - Result ${i+1} - Value`}
+                      data-cms-field="value"
                       className="font-heading uppercase text-4xl mb-2"
                       style={{ color: i === 0 ? GREEN : 'white' }}
                     >
                       {result.value}
                     </p>
                     <p
-                      data-cms={`EightWeek - Result ${i+1} - Label`}
+                      data-cms-field="label"
                       className="text-[#B0B0C0] text-xs uppercase tracking-widest font-heading"
                     >
                       {result.label}
@@ -145,7 +147,9 @@ export default function EightWeek() {
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div data-cms-repeater="EightWeek - Phases" data-cms-shape="card"
+            data-cms-min="2" data-cms-recommend="3" data-cms-max="6" data-cms-overflow="wrap"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {c.challenge_phases.map((phase, i) => (
               <AnimatedSection key={i} delay={i * 100}>
                 <div
@@ -160,20 +164,20 @@ export default function EightWeek() {
                   </span>
                   <div className="w-8 h-1 rounded-full mb-8" style={{ backgroundColor: GREEN }} />
                   <p
-                    data-cms={`EightWeek - Phase ${i+1} - Number`}
+                    data-cms-field="number"
                     className="font-heading uppercase tracking-widest text-xs mb-3"
                     style={{ color: GREEN }}
                   >
                     Phase {phase.number}
                   </p>
                   <h3
-                    data-cms={`EightWeek - Phase ${i+1} - Title`}
+                    data-cms-field="title"
                     className="font-heading uppercase text-white text-3xl mb-4"
                   >
                     {phase.title}
                   </h3>
                   <p
-                    data-cms={`EightWeek - Phase ${i+1} - Desc`}
+                    data-cms-field="desc"
                     className="text-[#B0B0C0] text-sm leading-relaxed"
                   >
                     {phase.desc}
@@ -203,12 +207,14 @@ export default function EightWeek() {
             </AnimatedSection>
 
             <AnimatedSection delay={100}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div data-cms-repeater="EightWeek - Includes" data-cms-shape="chip"
+                data-cms-min="3" data-cms-max="10" data-cms-overflow="wrap"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {c.challenge_includes.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckIcon />
                     <p
-                      data-cms={`EightWeek - Include ${i+1} - Text`}
+                      data-cms-field="text"
                       className="text-[#B0B0C0] text-sm leading-relaxed"
                     >
                       {item.text}
@@ -229,14 +235,12 @@ export default function EightWeek() {
               <AnimatedSection key={i} delay={i * 80}>
                 <div>
                   <p
-                    data-cms={`EightWeek - Stat ${i+1} - Value`}
-                    className="font-heading uppercase text-white text-5xl md:text-6xl leading-none"
+                                        className="font-heading uppercase text-white text-5xl md:text-6xl leading-none"
                   >
                     {result.value}
                   </p>
                   <p
-                    data-cms={`EightWeek - Stat ${i+1} - Label`}
-                    className="font-heading uppercase tracking-widest text-xs text-white mt-2"
+                                        className="font-heading uppercase tracking-widest text-xs text-white mt-2"
                     style={{ opacity: 0.8 }}
                   >
                     {result.label}

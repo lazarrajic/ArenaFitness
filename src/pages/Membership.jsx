@@ -64,7 +64,7 @@ export default function Membership() {
             </p>
           </AnimatedSection>
 
-          <div data-cms-repeater="Membership - Plans" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div data-cms-repeater="Membership - Plans" data-cms-shape="list" data-cms-min="2" data-cms-recommend="3" data-cms-max="6" data-cms-overflow="wrap" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {c.membership_plans.map((plan, i) => (
               <div key={i}
                 className="relative flex flex-col rounded-2xl p-8 h-full transition-transform hover:-translate-y-1 duration-300"
