@@ -287,11 +287,10 @@ function Memberships() {
           <div className="text-center">
             <Link
               to="/membership"
-              data-cms="Home - Memberships - View All"
               className="inline-flex items-center gap-2 font-heading uppercase tracking-widest text-sm transition-opacity hover:opacity-70"
               style={{ color: GREEN }}
             >
-              {c.home_memberships_view_all}
+              <span data-cms="Home - Memberships - View All">{c.home_memberships_view_all}</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
